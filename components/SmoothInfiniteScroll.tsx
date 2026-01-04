@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { scrollTo, useAnimatedReaction, useAnimatedRef, useSharedValue } from 'react-native-reanimated';
 
@@ -29,29 +29,49 @@ const iconDataSets = {
 const ITEM_HEIGHT = 160;
 const SCROLL_SPEED = 20; // pixels per second
 const GAP = 10; // gap between items from styles
+const PADDING_VERTICAL = 20; // padding from container styles
+const REPEAT_COUNT = 200; // Number of times to repeat the icon set for infinite scroll
 
 interface SmoothInfiniteScrollProps {
     scrollDirection?: 'up' | 'down';
     iconSet?: 'set1' | 'set2' | 'set3';
+    startOffset?: number; // Offset in pixels to shift the starting position
 }
 
 const SmoothInfiniteScroll = ({
     scrollDirection = 'down',
     iconSet = 'set1',
+    startOffset = 0,
 }: SmoothInfiniteScrollProps) => {
     const scrollRef = useAnimatedRef<Animated.ScrollView>();
-    const scrollY = useSharedValue(0);
 
+    // Create an infinite array by repeating the icon data many times
+    const infiniteItems = useMemo(() => {
+        const iconData = iconDataSets[iconSet];
+        const items: typeof iconData = [];
+        for (let i = 0; i < REPEAT_COUNT; i++) {
+            items.push(...iconData);
+        }
+        return items;
+    }, [iconSet]);
+
+    // Calculate total content height
     const iconData = iconDataSets[iconSet];
-    const items = [...iconData, ...iconData];
-    const totalContentHeight = iconData.length * ITEM_HEIGHT;
+    const oneSetHeight = iconData.length * ITEM_HEIGHT + (iconData.length - 1) * GAP;
+    const totalContentHeight = PADDING_VERTICAL + REPEAT_COUNT * oneSetHeight;
+
+    // Start position: beginning for down, middle for up (to allow scrolling up)
+    // Add startOffset to allow different starting positions for each row
+    const baseInitialScrollY = scrollDirection === 'down'
+        ? PADDING_VERTICAL
+        : totalContentHeight / 2;
+    const initialScrollY = baseInitialScrollY + startOffset;
+
+    const scrollY = useSharedValue(initialScrollY);
 
     useEffect(() => {
-        if (scrollDirection === 'up') {
-            scrollY.value = totalContentHeight;
-        } else {
-            scrollY.value = 0;
-        }
+        // Reset to initial position when direction changes
+        scrollY.value = initialScrollY;
 
         const interval = setInterval(() => {
             const increment = (SCROLL_SPEED / 60) * (scrollDirection === 'up' ? -1 : 1);
@@ -59,29 +79,16 @@ const SmoothInfiniteScroll = ({
         }, 1000 / 60);
 
         return () => clearInterval(interval);
+    }, [scrollDirection, initialScrollY]);
 
-    }, [scrollDirection])
-
+    // React to scrollY changes and update the scroll position
     useAnimatedReaction(
         () => scrollY.value,
         (y) => {
-            if (scrollDirection === 'down') {
-                if (y >= totalContentHeight) {
-                    scrollY.value = 0;
-                    scrollTo(scrollRef, 0, 0, false);
-                } else {
-                    scrollTo(scrollRef, 0, y, false);
-                }
-            } else {
-                if (y <= 0) {
-                    scrollY.value = totalContentHeight;
-                    scrollTo(scrollRef, 0, totalContentHeight, false);
-                } else {
-                    scrollTo(scrollRef, 0, y, false);
-                }
-            }
+            // Update scroll position continuously - no resets, no clamping, just pure infinite scroll
+            scrollTo(scrollRef, 0, y, false);
         }
-    )
+    );
 
     return (
         <Animated.ScrollView
@@ -89,7 +96,7 @@ const SmoothInfiniteScroll = ({
             ref={scrollRef}
             scrollEnabled={false}
             showsVerticalScrollIndicator={false}>
-            {items.map((item, idx) => (
+            {infiniteItems.map((item, idx) => (
                 <View key={idx} style={[styles.iconContainer, { backgroundColor: item.color }]}>
                     <Text style={{ fontSize: 40 }}>{item.emoji}</Text>
                 </View>

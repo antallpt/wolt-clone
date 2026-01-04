@@ -15,13 +15,13 @@ export default function Index() {
       style={styles.container}>
       <View style={styles.infiniteScrollContainer}>
         <View>
-          <SmoothInfiniteScroll scrollDirection="down" iconSet="set1" />
+          <SmoothInfiniteScroll scrollDirection="down" iconSet="set1" startOffset={0} />
         </View>
         <View>
           <SmoothInfiniteScroll scrollDirection="up" iconSet="set2" />
         </View>
         <View>
-          <SmoothInfiniteScroll scrollDirection="down" iconSet="set3" />
+          <SmoothInfiniteScroll scrollDirection="down" iconSet="set3" startOffset={60} />
         </View>
         <LinearGradient
           colors={['transparent', '#fff']}
