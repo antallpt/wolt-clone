@@ -1,4 +1,4 @@
-import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import { Tabs } from 'expo-router'
 import React from 'react'
 
@@ -13,8 +13,8 @@ const Layout = () => {
             <Tabs.Screen name='restaurants' options={{
                 title: 'Restaurants',
                 headerShown: false,
-                tabBarIcon: ({ color, size }) => (
-                    <MaterialIcons name='restaurant' color={color} size={size} />
+                tabBarIcon: ({ color, size, focused }) => (
+                    <Ionicons name={focused ? 'restaurant' : 'restaurant-outline'} color={color} size={size} />
                 )
             }} />
             <Tabs.Screen name='discovery' options={{
@@ -32,13 +32,13 @@ const Layout = () => {
             <Tabs.Screen name='search' options={{
                 title: 'Search',
                 tabBarIcon: ({ color, size, focused }) => (
-                    <FontAwesome5 name={focused ? 'search' : 'search'} color={color} size={size} />
+                    <Ionicons name={focused ? 'search' : 'search-outline'} color={color} size={size} />
                 )
             }} />
             <Tabs.Screen name='profile' options={{
                 title: 'Profile', headerShown: false,
-                tabBarIcon: ({ color, size }) => (
-                    <Ionicons name={'person'} color={color} size={size} />
+                tabBarIcon: ({ color, size, focused }) => (
+                    <Ionicons name={focused ? 'person' : 'person-outline'} color={color} size={size} />
                 )
             }} />
         </Tabs>
