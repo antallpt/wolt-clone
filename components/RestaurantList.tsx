@@ -14,6 +14,7 @@ const RestaurantList = () => {
             </View>
         )
     }
+
     return (
         <>
             {restaurants?.map((item) => (
