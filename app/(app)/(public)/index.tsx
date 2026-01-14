@@ -1,7 +1,7 @@
 import AppleAuthButton from "@/components/auth/AppleAuthButton";
 import GoogleAuthButton from "@/components/auth/GoogleAuthButton";
 import SmoothInfiniteScroll from "@/components/SmoothInfiniteScroll";
-import { Fonts } from "@/constants/theme";
+import { Colors, Fonts } from "@/constants/theme";
 import { LinearGradient } from 'expo-linear-gradient';
 import { Link } from "expo-router";
 import { Image, Linking, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -25,7 +25,7 @@ export default function Index() {
           <SmoothInfiniteScroll scrollDirection="down" iconSet="set3" startOffset={60} />
         </View>
         <LinearGradient
-          colors={['transparent', '#fff']}
+          colors={['transparent', Colors.background]}
           style={{
             position: 'absolute',
             height: 200,
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   otherButtonText: {
-    color: '#666',
+    color: Colors.muted,
     fontSize: 17,
     fontWeight: '600'
   },

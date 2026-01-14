@@ -1,3 +1,4 @@
+import { Colors } from '@/constants/theme'
 import { Ionicons } from '@expo/vector-icons'
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
@@ -5,7 +6,7 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 const AppleAuthButton = () => {
     return (
         <TouchableOpacity style={styles.appleButton}>
-            <Ionicons name='logo-apple' size={18} color={'#fff'} />
+            <Ionicons name='logo-apple' size={18} color={Colors.background} />
             <Text style={styles.appleButtonText}> Sign in with Apple</Text>
         </TouchableOpacity >
     )
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
         gap: 4,
     },
     appleButtonText: {
-        color: '#fff',
+        color: Colors.background,
         fontSize: 17,
         fontWeight: '600'
     }

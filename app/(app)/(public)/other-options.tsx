@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         gap: 4,
     },
     otherButtonText: {
-        color: '#666',
+        color: Colors.muted,
         fontSize: 17,
         fontWeight: '600'
     },
