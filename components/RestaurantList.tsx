@@ -31,12 +31,12 @@ const RestaurantList = () => {
                         </View>
 
                         <View style={styles.metadata}>
-                            <Ionicons name='bicycle-outline' size={16} color={'#666'} />
+                            <Ionicons name='bicycle-outline' size={16} color={Colors.muted} />
                             <Text style={styles.metadataText}>€{item.deliveryFee.toFixed(2)}</Text>
                             <Text style={styles.dot}>•</Text>
                             <Text style={styles.metadataText}>€€€€</Text>
                             <Text style={styles.dot}>•</Text>
-                            <Ionicons name='happy-outline' size={16} color={'#666'} />
+                            <Ionicons name='happy-outline' size={16} color={Colors.muted} />
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 14,
-        color: '#666'
+        color: Colors.muted
     },
     metadata: {
         borderTopColor: Colors.light,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
     metadataText: {
         fontSize: 13,
-        color: '#666'
+        color: Colors.muted
     },
     dot: {
         color: '#999',
