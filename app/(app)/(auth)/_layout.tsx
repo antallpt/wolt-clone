@@ -32,7 +32,7 @@ const Layout = () => {
                 sheetGrabberVisible: true,
                 headerShadowVisible: false,
                 contentStyle: {
-                    backgroundColor: '#fff'
+                    backgroundColor: Colors.background
                 },
                 headerRight: () => (
                     <TouchableOpacity
