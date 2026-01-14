@@ -67,7 +67,7 @@ const Page = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.background,
     padding: 20,
   },
   title: {

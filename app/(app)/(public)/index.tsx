@@ -25,7 +25,7 @@ export default function Index() {
           <SmoothInfiniteScroll scrollDirection="down" iconSet="set3" startOffset={60} />
         </View>
         <LinearGradient
-          colors={['transparent', '#fff']}
+          colors={['transparent', Colors.background]}
           style={{
             position: 'absolute',
             height: 200,

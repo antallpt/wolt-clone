@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
         top: 0,
         left: 0,
         right: 0,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.background,
         zIndex: 100,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },

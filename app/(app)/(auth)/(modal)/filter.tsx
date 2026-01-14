@@ -80,7 +80,7 @@ const Page = () => {
           value={woltPlusOnly}
           onValueChange={setWoltPlusOnly}
           trackColor={{ false: Colors.light, true: Colors.primary }}
-          thumbColor="#fff"
+          thumbColor={Colors.background}
         />
       </View>
 
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     color: Colors.secondary,
   },
   chipTextSelected: {
-    color: '#fff',
+    color: Colors.background,
     fontWeight: '600',
   },
   toggleSection: {
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   applyButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#fff',
+    color: Colors.background,
   },
 });
 

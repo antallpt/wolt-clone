@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         width: 130,
         borderRadius: 12,
         overflow: 'hidden',
-        backgroundColor: '#fff',
+        backgroundColor: Colors.background,
         marginVertical: 8,
         boxShadow: '0px 4px 2px -2px rgba(0, 0, 0, 0.2)',
         elevation: 2,
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
     categoryInfo: {
-        backgroundColor: '#fff',
+        backgroundColor: Colors.background,
         padding: 12,
         paddingTop: 4,
         borderLeftWidth: StyleSheet.hairlineWidth,
